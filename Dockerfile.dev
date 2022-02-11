@@ -1,0 +1,12 @@
+FROM node:16-alpine
+
+WORKDIR '/app'
+
+# even if we are using volume mount, we still need package.json to run npm install
+COPY package.json .
+RUN npm install
+
+# not required as we are volume mounting, in case of production it should be present
+COPY . .
+
+CMD ["npm", "run", "start"]
