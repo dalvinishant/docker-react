@@ -1,0 +1,15 @@
+stages:
+  - "build"
+  - "test"
+services:
+  - docker
+
+build_stage:
+  stage: "build"
+  script:
+    - echo "docker build -t dalvinishant/docker-react -f Dockerfile.dev ."
+
+test_stage:
+  stage: "test"
+  script:
+    - echo "docker run -e CI=true dalvinishant/docker-react npm run test -- --coverage"
